@@ -1,7 +1,6 @@
-# Arduino-Distance-Sensor
 # Ultrasonic Distance Sensor – Arduino
 
-An Arduino-based distance detection project using an **HC-SR04 ultrasonic sensor**, RGB LEDs, and a buzzer.
+An Arduino-based distance detection project using an **HC-SR04 ultrasonic sensor**, LEDs, and a buzzer.
 
 The system measures the distance to an object and provides visual and audible feedback based on the detected distance.
 
@@ -21,6 +20,13 @@ The system measures the distance to an object and provides visual and audible fe
 | > 30 cm  | 🟢 Green       | Off    |
 | 11–30 cm | 🟡 Red + Green | Off    |
 | ≤ 10 cm  | 🔴 Red         | On     |
+
+## Files
+
+| File | Description |
+| ---- | ----------- |
+| `MesafeSensoru_Led_Buzzer/MesafeSensoru_Led_Buzzer.ino` | Full project: distance measurement with LED and buzzer alerts |
+| `MesafeOlcer.ino` | Basic version: prints the measured distance to the Serial Monitor |
 
 ## Hardware
 
@@ -44,6 +50,8 @@ The system measures the distance to an object and provides visual and audible fe
 | Buzzer             |           6 |
 | Ultrasonic Trigger |          12 |
 | Ultrasonic Echo    |          11 |
+
+> The blue LED pin is configured in the code but is not used by the alert logic.
 
 ## How It Works
 
@@ -104,8 +112,13 @@ The project demonstrates:
 
 **Completed**
 
+## Known Limitations
+
+`ping_cm()` returns `0` when no echo is received within the 200 cm maximum range. The current logic treats this value as a critical distance, so the red LED and buzzer also turn on when no object is detected.
+
 ## Future Improvements
 
+* Handle out-of-range readings separately
 * Add an LCD or OLED display
 * Use an RGB LED for smoother status indication
 * Add adjustable distance thresholds
